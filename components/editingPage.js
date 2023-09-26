@@ -263,7 +263,7 @@ export default function EditingPage() {
         <div className={`mb-0`}>
           <div ref={header} className={`flex scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-slate-700 scrollbar-track-inherit p-2 overflow-x-auto ${preview ? "mb-2" : ""}`}>
             <form onSubmit={saveNote}>
-              <input disabled={preview} className="bg-inherit text-slate-400 mx-2 p-2 max-w-[20rem]" placeholder="Untitled Note" value={title} onChange={(e) => setTitle(e.target.value)}></input>
+              <input disabled={preview} className="bg-inherit placeholder:text-slate-400 text-slate-400 mx-2 p-2 max-w-[20rem]" placeholder="Untitled Note" value={title} onChange={(e) => setTitle(e.target.value)}></input>
             </form>
             <div className={`m-auto pl-4 uppercase text-xs font-light text-slate-400 opacity-75`}>{note !== lastSavedNote || title !== lastSavedTitle || importance.length !== lastSavedImportance.length ? "Unsaved Changes" : ""}</div>
             <div className={`flex text-white flex-1 justify-end`}>
