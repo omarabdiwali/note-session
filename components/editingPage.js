@@ -16,6 +16,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import 'katex/dist/katex.min.css';
+import HelpButton from "./helpButton";
 /** Shows the text editor and its markdown equivalent. */
 export default function EditingPage() {
   const router = useRouter();
@@ -278,7 +279,8 @@ export default function EditingPage() {
               <button className="text-slate-400 mr-2 font-bold uppercase text-sm" onClick={() => setPreview(!preview)}>{preview ? "Editor" : "Preview"}</button>
               <button onClick={copyNote} disabled={note.length === 0 || preview} className={`${preview ? "hidden" : ""} text-slate-400 mr-2 text-sm my-auto disabled:opacity-60 font-bold uppercase`}>Copy</button>
               <DeleteNote func={() => window.location.reload()} button={<AiOutlineDelete />} className={`disabled:opacity-60 mr-2 text-2xl`} noteId={noteId} onPage={true} />
-              <button onClick={saveNote} className={`disabled:opacity-60 text-2xl`} disabled={(note === lastSavedNote && importance.length === lastSavedImportance.length && title === lastSavedTitle) || disable}><AiOutlineSave /></button>
+              <button onClick={saveNote} className={`disabled:opacity-60 text-2xl mr-2`} disabled={(note === lastSavedNote && importance.length === lastSavedImportance.length && title === lastSavedTitle) || disable}><AiOutlineSave /></button>
+              <HelpButton />
             </div>
           </div>
           {!preview ? (
