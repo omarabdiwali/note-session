@@ -91,7 +91,7 @@ export default function Home() {
       </div>
     )
   }
-  // shows a log in button when user is not logged in
+  // log in button when user is not logged in
   if (status === "unauthenticated") {
     return (
       <div className="flex h-screen">
