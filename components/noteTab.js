@@ -59,7 +59,7 @@ export default function NoteTab({ note, remove }) {
       <div className="pr-4 whitespace-nowrap my-auto flex-1">
         {!change ? <a href={`/notes/${note.id}`}>{title}</a> :
           <form onSubmit={saveTitle}>
-            <input disabled={disabled} autoFocus className="bg-inherit outline-none" value={title} onChange={e => setTitle(e.target.value)} />
+            <input placeholder="Untitled Note" disabled={disabled} autoFocus className="bg-inherit outline-none" value={title} onChange={e => setTitle(e.target.value)} />
           </form>
         }
       </div>
