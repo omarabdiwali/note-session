@@ -9,6 +9,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       <SessionProvider session={session}>
         <Head>
           <title>NoteSession</title>
+          <link rel="shortcut icon" href="/images/favicon.ico" />
         </Head>
         <Component {...pageProps} />
       </SessionProvider>
