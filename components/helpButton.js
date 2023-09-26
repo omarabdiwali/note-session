@@ -30,6 +30,12 @@ export default function HelpButton() {
                 </div>
                 <div className="relative max-h-full w-full h-full p-6 flex-auto">
                   <div>This uses <span><a rel="noopener norefferrer" target="__blank" className="text-blue-400 hover:underline" href="https://www.markdownguide.org/cheat-sheet/">Markdown</a></span> syntax</div>
+                  <div>For code syntax highlighting, add coding language. Ex.</div>
+                  <br></br>
+                  <div>'''js</div>
+                  <div className="ml-5">console.log('It works!')</div>
+                  <div>'''</div>
+                  <br></br>
                   <div>Math: <span><a rel="noopener norefferrer" target="__blank" className="text-blue-400 hover:underline"  href="https://katex.org/docs/support_table.html">Katex</a></span> syntax, surrounded by dollar signs ($[syntax]$)</div>
                 </div>
               </div>
