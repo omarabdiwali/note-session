@@ -31,7 +31,7 @@ export default function EditingPage() {
   const [preview, setPreview] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [disable, setDisable] = useState(false);
-  const [height, setHeight] = useState("100vm");
+  const [height, setHeight] = useState("90vh");
 
   const textArea = useRef();
   const header = useRef();
