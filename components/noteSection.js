@@ -1,0 +1,20 @@
+import { AiOutlinePlus } from "react-icons/ai";
+import NoteTab from "./noteTab"
+/** Creates a section for the different groupings. */
+export default function NoteSection({ notes, title, remove, className }) {
+  return (
+    <div className={`flex-1 overflow-x-auto bg-gray-400 min-h-[15rem] max-h-[15rem] min-w-[15rem] w-[30rem] max-w-[30rem] ${className} rounded-lg shadow-2xl border border-b border-slate-700`}>
+      <div className="flex text-lg p-3 m-3">
+        <div className="flex-1">{title}</div>
+        <a href={`/notes/create/${title}`} className="text-2xl m-auto"><AiOutlinePlus /></a>
+      </div>
+      <div className="flex flex-col mx-5">
+        <div className="h-[9rem] max-h-[9rem] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-slate-700 scrollbar-track-inherit">
+          {notes.map((note, index) => {
+            return <NoteTab note={note} remove={remove} key={index} />
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
