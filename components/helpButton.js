@@ -18,7 +18,7 @@ export default function HelpButton() {
           <div
             className="justify-center overscroll-contain items-center flex overflow-x-hidden scrollbar-none fixed inset-0 z-50 outline-none focus:outline-none"
           >
-            <div className="relative w-auto my-6 mx-auto min-w-[50rem] pt-8 max-h-screen max-w-[50rem]">
+            <div className="relative w-auto my-6 mx-auto w-[50rem] pt-8 max-h-screen max-w-[50rem]">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-slate-700 outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-black rounded-t">
                   <h3 className="text-xl text-black font-bold">

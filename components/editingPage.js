@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import { enqueueSnackbar } from "notistack";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineDelete, AiOutlineSave } from "react-icons/ai";
 import DeleteNote from "./deleteButton";
@@ -32,18 +32,32 @@ export default function EditingPage() {
   const [preview, setPreview] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [disable, setDisable] = useState(false);
-  const [height, setHeight] = useState("90vh");
+  const [height, setHeight] = useState("100vh");
 
   const textArea = useRef();
   const header = useRef();
 
-  useEffect(() => {
-    if (header.current === undefined) return;
-    // sets the height of the textarea to fill rest of the screen
+  const changeHeight = useCallback(e => {
+    if (e === undefined || header.current === undefined) return;
     let hgt = header.current.offsetHeight;
     let height = window.innerHeight - hgt;
-    setHeight(`${height}px`);    
-  }, [header.current]);
+    setHeight(`${height}px`);
+  }, [header])
+
+  useEffect(() => {
+    if (loaded && header.current !== undefined) {
+      let hgt = header.current.offsetHeight;
+      let height = window.innerHeight - hgt;
+      setHeight(`${height}px`);
+    }    
+  }, [header, loaded]);
+
+  useEffect(() => {
+    window.addEventListener('resize', changeHeight);
+    return () => {
+      window.removeEventListener('resize', changeHeight);
+    }
+  }, [changeHeight])
 
   useEffect(() => {
     // status has to be authenticated to proceed, and router has to be ready
@@ -283,7 +297,7 @@ export default function EditingPage() {
           </div>
           {!preview ? (
             <div style={{minHeight: height, maxHeight: height}} className={`flex pb-6 pt-2 px-4`}>
-              <textarea ref={textArea} onKeyDown={keyDown} spellCheck={false} className={`text-black scrollbar-none flex-1 p-3 rounded-lg bg-gray-500`} placeholder="Start writitng your note..." value={note} onChange={(e) => setNote(e.target.value)}></textarea>
+              <textarea ref={textArea} onKeyDown={keyDown} spellCheck={false} className={`text-black flex-1 p-3 rounded-lg bg-gray-500`} placeholder="Start writitng your note..." value={note} onChange={(e) => setNote(e.target.value)}></textarea>
             </div>
           ) : (
             <div className="w-full pb-6 pt-2 px-4 rounded-lg min-w-full bg-slate-700">
