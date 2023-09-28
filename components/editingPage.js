@@ -158,8 +158,6 @@ export default function EditingPage() {
           setNoteId(data.noteId);
           history.replaceState({}, "Title", `/notes/${data.noteId}`);
         }
-      } else if (data.answer === "Logged Out") {
-        window.location.href = "/";
       } else {
         enqueueSnackbar(data.answer, { variant: "warning", autoHideDuration: 1500 });
         window.location.href = "/";

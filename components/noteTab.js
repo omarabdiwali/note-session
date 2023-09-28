@@ -36,8 +36,6 @@ export default function NoteTab({ note, remove }) {
         setPrevTitle(curTitle);
         setChange(false);
         setDisabled(false);
-      } else if (data.answer === "Logged Out") {
-        window.location.reload();
       } else {
         enqueueSnackbar(data.answer, { variant: "warning", autoHideDuration: 1500 });
         window.location.reload();

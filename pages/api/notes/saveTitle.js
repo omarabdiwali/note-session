@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
 
   if (!session || !req.body) {
-    res.status(200).json({ answer: "Logged Out" });
+    res.status(200).json({ answer: "Logged out!" });
     return;
   }
   // gets the note-id and note-title from the req.body, and the user's profile
@@ -27,6 +27,6 @@ export default async function handler(req, res) {
     res.status(200).json({ answer: "Saved" });
   }
   else {
-    res.status(200).json({ answer: "Logged Out" });
+    res.status(200).json({ answer: "Note does not exist." });
   }
 }

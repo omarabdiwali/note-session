@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
 
   if (!session || !req.body) {
-    res.status(200).json({ answer: "Reload" });
+    res.status(200).json({ answer: "Logged out!" });
     return;
   }
   // gets the note-id from the req.body, and the user's profile

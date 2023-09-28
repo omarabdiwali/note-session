@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
 
   if (!session || !req.body) {
-    res.status(200).json({ answer: "Logged Out" });
+    res.status(200).json({ answer: "Logged out!" });
     return;
   }
 
