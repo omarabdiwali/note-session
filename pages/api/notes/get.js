@@ -23,8 +23,7 @@ export default async function handler(req, res) {
   
   if (note) {
     res.status(200).json({ note: note.data, importance: note.importance, title: note.title, answer: "Success" });
-  }
-  else {
+  } else {
     res.status(200).json({ answer: "Note does not exist." });
   }
 }

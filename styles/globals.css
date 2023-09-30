@@ -2,27 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-details {
-  cursor: pointer;
-}
-
 .markdown a {
   color: #1a68f9;
   text-decoration: none;
 }
-
 .markdown code {
   font-weight: 900;
 }
-
 .markdown :is(h1, h2, h3, h4, h5, h6, blockquote, strong, th) {
   color: black;
 }
-
 .markdown a:hover {
   text-decoration: underline;
 }
-
 mark {
   background-color: #fae092;
   color: black;
@@ -30,7 +22,6 @@ mark {
   padding-right: 3px;
   margin-right: 3px;
 }
-
 body {
   background: black
 }
