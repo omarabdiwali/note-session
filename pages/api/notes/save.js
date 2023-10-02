@@ -1,13 +1,13 @@
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../auth/[...nextauth]"
+import { customAlphabet } from "nanoid";
 import dbConnect from "@/utils/dbConnect";
 import Notes from "@/models/Notes";
-
-let crypto = require("crypto");
 
 export default async function handler(req, res) {
   // checks if user is logged in, if not redirects to home
   const session = await getServerSession(req, res, authOptions);
+  const alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   if (!session || !req.body) {
     res.status(200).json({ answer: "Logged out!" });
@@ -23,12 +23,21 @@ export default async function handler(req, res) {
   // if it is a new note, create a unique id using 'crypto' module, and query the database using the id
   // if it has been found, create another id, and do it until it is unique within the database
   if (id === "create") {
-    id = crypto.randomBytes(5).toString('hex');
+    let collisions = 0;
+    let idLength = 6;
+    let nanoid = customAlphabet(alphabet, idLength);
+    id = nanoid();
     let created = await Notes.findOne({ id: id });
 
     while (created) {
-      id = crypto.randomBytes(5).toString('hex');
-      created = await Notes.findOne({ id: id });
+      collisions += 1
+      if (collisions == 3) {
+        collisions = 0;
+        idLength += 1;
+        nanoid = customAlphabet(alphabet, idLength);
+      }
+      id = nanoid();
+      created = await Notes.findOne({ id: nanoid() });
     }
   }
 
