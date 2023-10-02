@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   
   await dbConnect();
   let id = noteID;
-  // if it is a new note, create a unique id using 'crypto' module, and query the database using the id
+  // if it is a new note, create a unique id using 'nanoid' module, and query the database using the id
   // if it has been found, create another id, and do it until it is unique within the database
   if (id === "create") {
     let collisions = 0;
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         nanoid = customAlphabet(alphabet, idLength);
       }
       id = nanoid();
-      created = await Notes.findOne({ id: nanoid() });
+      created = await Notes.findOne({ id: id });
     }
   }
 
