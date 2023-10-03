@@ -4,10 +4,14 @@ import { customAlphabet } from "nanoid";
 import dbConnect from "@/utils/dbConnect";
 import Notes from "@/models/Notes";
 
+// inititalizing the id-length, and the generation for unique id using the 'nanoid' module
+const alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+let idLength = 6;
+let nanoid = customAlphabet(alphabet, idLength);
+
 export default async function handler(req, res) {
   // checks if user is logged in, if not redirects to home
   const session = await getServerSession(req, res, authOptions);
-  const alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   if (!session || !req.body) {
     res.status(200).json({ answer: "Logged out!" });
@@ -20,12 +24,10 @@ export default async function handler(req, res) {
   
   await dbConnect();
   let id = noteID;
-  // if it is a new note, create a unique id using 'nanoid' module, and query the database using the id
-  // if it has been found, create another id, and do it until it is unique within the database
+  // create an id until it is unique within the database
+  // if there are three collisions, the id-length increases
   if (id === "create") {
     let collisions = 0;
-    let idLength = 6;
-    let nanoid = customAlphabet(alphabet, idLength);
     id = nanoid();
     let created = await Notes.findOne({ id: id });
 
