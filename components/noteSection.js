@@ -10,8 +10,8 @@ export default function NoteSection({ notes, title, remove, className }) {
       </div>
       <div className="flex flex-col mx-5">
         <div className="h-[9rem] max-h-[9rem] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-slate-700 scrollbar-track-inherit">
-          {notes.map((note, index) => {
-            return <NoteTab note={note} remove={remove} key={index} />
+          {notes.map((note, _) => {
+            return <NoteTab note={note} remove={remove} key={note.id} />
           })}
         </div>
       </div>

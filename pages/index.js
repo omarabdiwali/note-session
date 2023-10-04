@@ -55,27 +55,30 @@ export default function Home() {
   const deleteNote = (note) => {
     // creates the copy of all the notes and removes the deleted note using the index
     let nts = [...notes];
-    let index = nts.indexOf(note);
+    let index = nts.findIndex(nte => nte.id === note.id);
     nts.splice(index, 1);
     // checks which group it belongs to, removes it using the index, and saves the new list
     if (note.importance.length == 15) {
       let bth = [...both];
-      bth.splice(bth.indexOf(note), 1)
+      let ind = bth.findIndex(nte => nte.id === note.id)
+      bth.splice(ind, 1)
       setBoth(bth);
     } else if (note.importance.length === 9) {
       let imp = [...important];
-      imp.splice(imp.indexOf(note), 1);
-      setImportant(imp)
+      let ind = imp.findIndex(nte => nte.id === note.id)
+      imp.splice(ind, 1);
+      setImportant(imp);
     } else if (note.importance.length === 6) {
       let urg = [...urgent];
-      urg.splice(urg.indexOf(note), 1);
+      let ind = urg.findIndex(nte => nte.id === note.id)
+      urg.splice(ind, 1);
       setUrgent(urg);
     } else {
       let non = [...none];
-      non.splice(non.indexOf(note), 1);
+      let ind = non.findIndex(nte => nte.id === note.id)
+      non.splice(ind, 1);
       setNone(non);
     }
-
     setNotes(nts);
   }
   // shows loading symbol while waiting for the load
