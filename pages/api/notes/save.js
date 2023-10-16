@@ -43,9 +43,9 @@ export default async function handler(req, res) {
     }
   }
 
-  let newNote = { id: id, email: profile.email, title: title, data: data, importance: importance, date: date };
   // if it is a new note, create a new document within the database
   if (noteID === "create") {
+    let newNote = { id: id, email: profile.email, title: title, data: data, importance: importance, date: date };
     let note = await Notes.create(newNote).catch(err => console.error(err));
     res.status(200).json({ answer: "Saved", noteId: id, title: note.title, note: note.data, importance: note.importance });
   }

@@ -1,9 +1,10 @@
-import { AiOutlineCheck, AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineDelete, AiOutlineEdit, AiOutlineEllipsis } from "react-icons/ai";
 import DeleteNote from "./deleteButton";
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
+import ChangeSection from "./changeSections";
 /** The tab of the note shown on the home page. */
-export default function NoteTab({ note, remove }) {
+export default function NoteTab({ note, remove, update }) {
   const [title, setTitle] = useState(note.title);
   const [prevTitle, setPrevTitle] = useState(note.title);
   const [change, setChange] = useState(false);
@@ -51,16 +52,17 @@ export default function NoteTab({ note, remove }) {
   }
 
   return (
-    <div className="flex min-w-fit text-sm text-black mx-5 rounded-xl mb-3 my-auto border border-b border-slate-600 h-9 max-h-9">
+    <div className="flex min-w-fit text-sm text-white mx-5 rounded-xl mb-3 my-auto border border-b border-white h-9 max-h-9">
       <DeleteNote disableButton={disabled} className={"ml-3 mr-2 m-auto text-lg"} func={() => remove(note)} button={<AiOutlineDelete />} noteId={note.id} />
       <button title={!change ? "Edit title" : "Save Title"} disabled={disabled} onClick={changeType} className="mr-5 my-auto text-lg">{!change ? <AiOutlineEdit /> : <AiOutlineCheck />}</button>
       <div className="pr-4 whitespace-nowrap my-auto flex-1">
         {!change ? <a href={`/notes/${note.id}`}>{title}</a> :
           <form onSubmit={saveTitle}>
-            <input placeholder="Untitled Note" disabled={disabled} autoFocus className="bg-inherit placeholder:text-slate-900 outline-none" value={title} onChange={e => setTitle(e.target.value)} />
+            <input placeholder="Untitled Note" disabled={disabled} autoFocus className="bg-inherit w-full placeholder:text-slate-900 outline-none" value={title} onChange={e => setTitle(e.target.value)} />
           </form>
         }
       </div>
+      <ChangeSection func={update} className={"text-xl my-auto mr-3 ml-2"} button={<AiOutlineEllipsis />} noteId={note.id} important={note.importance} />
     </div>
   )
 }

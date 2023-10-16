@@ -51,6 +51,37 @@ export default function Home() {
     }).catch(err => console.error(err));
 
   }, [status])
+
+  const changeOrDelete = (arr, id, note, del) => {
+    if (del) {
+      let ind = arr.findIndex(nte => nte.id === id)
+      arr.splice(ind, 1);
+    } else {
+      arr.push(note)
+    }
+    return arr;
+  }
+
+  const findAndUpdateNote = (importance, id, note, del=true) => {
+    if (importance.length == 15) {
+      let bth = [...both];
+      bth = changeOrDelete(bth, id, note, del);
+      setBoth(bth);
+    } else if (importance.length === 9) {
+      let imp = [...important];
+      imp = changeOrDelete(imp, id, note, del);
+      setImportant(imp);
+    } else if (importance.length === 6) {
+      let urg = [...urgent];
+      urg = changeOrDelete(urg, id, note, del);
+      setUrgent(urg);
+    } else {
+      let non = [...none];
+      non = changeOrDelete(non, id, note, del);
+      setNone(non);
+    }
+  }
+
   /** Deletes the note from all the notes and the corresponding group. */
   const deleteNote = (note) => {
     // creates the copy of all the notes and removes the deleted note using the index
@@ -58,29 +89,19 @@ export default function Home() {
     let index = nts.findIndex(nte => nte.id === note.id);
     nts.splice(index, 1);
     // checks which group it belongs to, removes it using the index, and saves the new list
-    if (note.importance.length == 15) {
-      let bth = [...both];
-      let ind = bth.findIndex(nte => nte.id === note.id)
-      bth.splice(ind, 1)
-      setBoth(bth);
-    } else if (note.importance.length === 9) {
-      let imp = [...important];
-      let ind = imp.findIndex(nte => nte.id === note.id)
-      imp.splice(ind, 1);
-      setImportant(imp);
-    } else if (note.importance.length === 6) {
-      let urg = [...urgent];
-      let ind = urg.findIndex(nte => nte.id === note.id)
-      urg.splice(ind, 1);
-      setUrgent(urg);
-    } else {
-      let non = [...none];
-      let ind = non.findIndex(nte => nte.id === note.id)
-      non.splice(ind, 1);
-      setNone(non);
-    }
+    findAndUpdateNote(note.importance, note.id, note);
     setNotes(nts);
   }
+
+  const updateNote = (id, importance) => {
+    let nts = [...notes];
+    let index = nts.findIndex(nte => nte.id === id);
+    let prevImp = nts[index].importance;
+    nts[index].importance = importance;
+    findAndUpdateNote(prevImp, id, nts[index]);
+    findAndUpdateNote(importance, id, nts[index], false);
+  }
+
   // shows loading symbol while waiting for the load
   if (status !== "unauthenticated" && !loaded) {
     return (
@@ -110,15 +131,15 @@ export default function Home() {
   return (
     <>
       <Toolbar />
-      <div className="flex min-h-screen bg-slate-600 flex-col px-5 pt-6 overflow-x-auto">
+      <div className="flex min-h-screen flex-col px-5 pt-6 overflow-x-auto">
         <div className="flex-1 flex p-3">
           {categories.slice(0, 2).map((cat, i) => {
-            return <NoteSection className={i == 0 ? "ml-auto mr-5 my-auto" : "ml-5 my-auto mr-auto"} notes={i == 0 ? both : urgent} title={cat} remove={deleteNote} key={i} />
+            return <NoteSection className={i == 0 ? "ml-auto mr-5 my-auto" : "ml-5 my-auto mr-auto"} notes={i == 0 ? both : urgent} title={cat} update={updateNote} remove={deleteNote} key={i} />
           })}
         </div>
         <div className="flex-1 flex p-3">
           {categories.slice(2).map((cat, i) => {
-            return <NoteSection className={i == 0 ? "ml-auto mr-5" : "ml-5 mr-auto"} notes={i == 0 ? important : none} title={cat} remove={deleteNote} key={i + 2} />
+            return <NoteSection className={i == 0 ? "ml-auto mr-5" : "ml-5 mr-auto"} notes={i == 0 ? important : none} title={cat} update={updateNote} remove={deleteNote} key={i + 2} />
           })}
         </div>
       </div>
