@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import { enqueueSnackbar } from "notistack";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
-import { AiOutlineDelete, AiOutlineSave } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineSave, AiOutlineSync } from "react-icons/ai";
 import DeleteNote from "./deleteButton";
 import Head from "next/head";
 
@@ -278,7 +278,8 @@ export default function EditingPage() {
             <form onSubmit={saveNote}>
               <input disabled={preview} className="bg-inherit text-slate-400 mx-2 p-2 max-w-[20rem]" placeholder="Untitled Note" value={title} onChange={(e) => setTitle(e.target.value)}></input>
             </form>
-            <div className={`m-auto pl-4 uppercase text-xs font-light text-slate-400 opacity-75`}>{note !== lastSavedNote || title !== lastSavedTitle || importance.length !== lastSavedImportance.length ? "Unsaved Changes" : ""}</div>
+            <div className={`my-auto pl-4 text-xl text-slate-400 opacity-75 ${disable ? "" : "hidden"}`}><AiOutlineSync /></div>
+            <div className="text-slate-400 opacity-75 text-xs m-auto ml-2">{note !== lastSavedNote || title !== lastSavedTitle || importance.length !== lastSavedImportance.length ? disable ? "Saving..." : "Unsaved Changes" : ""}</div>
             <div className={`flex text-white flex-1 justify-end`}>
               <select disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-black focus:outline-none">
                 <option selected={importance.includes("Important")} value={"High Importance"}>Importance: High</option>
