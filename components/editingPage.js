@@ -131,8 +131,6 @@ export default function EditingPage() {
   /** Saves the current note. */
   const saveNote = (e) => {   
     e.preventDefault();
-    setDisable(true);
-
     let whatToChange = "";
     // blurs the element if user uses the enter key to save the title
     if (document.activeElement.tagName.toLowerCase() === "input") {
@@ -149,6 +147,8 @@ export default function EditingPage() {
     // if nothings been changed, return
     if (whatToChange.length === 0) return;
     // creates the object for the body of the request
+    setDisable(true);
+    
     let reqBody = {
       data: note, title: title, importance: importance,
       date: new Date(), noteID: noteId, whatToChange: whatToChange
