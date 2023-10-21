@@ -120,7 +120,7 @@ export default function Home() {
     return (
       <div className="flex h-screen">
         <div className="m-auto">
-          <div onClick={() => signIn('google')} className='mt-5 cursor-pointer hover:bg-black hover:text-white dark:text-white dark:hover:bg-white dark:hover:text-black text-black font-semibold py-2 px-4 border border-gray-400 rounded shadow'>
+          <div onClick={() => signIn('google')} className='mt-5 cursor-pointer text-white bg-black hover:bg-white hover:text-black font-semibold py-2 px-4 border border-gray-400 rounded shadow'>
             Sign In With Google
           </div>
         </div>
