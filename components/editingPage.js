@@ -162,7 +162,6 @@ export default function EditingPage() {
       body: JSON.stringify(reqBody)
     }).then(res => res.json()).then(data => {
       if (data.answer === "Saved") {
-        enqueueSnackbar("Note has been saved!", { variant: "success", autoHideDuration: 1500 });
         setImportance(data.importance);
         setLastSavedImportance(data.importance);
         setNote(data.note);
