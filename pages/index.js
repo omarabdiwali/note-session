@@ -1,6 +1,6 @@
 import NoteSection from "@/components/noteSection";
 import Toolbar from "@/components/toolbar";
-import { signIn, useSession } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 
 export default function Home() {
@@ -118,10 +118,28 @@ export default function Home() {
   // log in button when user is not logged in
   if (status === "unauthenticated") {
     return (
-      <div className="flex h-screen">
-        <div className="m-auto">
-          <div onClick={() => signIn('google')} className='mt-5 cursor-pointer text-white bg-black hover:bg-white hover:text-black font-semibold py-2 px-4 border border-gray-400 rounded shadow'>
-            Sign In With Google
+      <div className="min-h-screen mb-10">
+        <Toolbar signedIn={false} />
+        <div className="text-5xl text-gold mt-32">
+          <center>
+            Save Your Notes Using Markdown
+          </center>
+        </div>
+        <div className={`mt-20 flex transition-all duration-300 delay-150 ease-in-out`}>
+          <div className="flex-1 border-none m-auto ml-5">
+            <div className="md:text-5xl text-gold font-bold sm:text-2xl">
+              NoteSession
+            </div>
+            <div className="mt-4 text-slate-400 leading-tight md:text-5xl sm:text-2xl">
+              A Way To Markdown Your Notes
+            </div>
+          </div>
+          <div className="center space-y-2 text-gold flex-1 md:text-4xl sm:text-lg border-none m-auto">
+            <center>
+              <button className="w-2/3 border-solid border-2 border-gold rounded-xl text-base p-2 pb-3 hover:bg-black hover:text-gold bg-inherit text-slate-400">
+                Sign In With Google
+              </button>
+            </center>
           </div>
         </div>
       </div>

@@ -281,13 +281,13 @@ export default function EditingPage() {
             <div className={`my-auto pl-4 text-xl text-slate-400 opacity-75 ${(lastSavedNote !== note || lastSavedImportance !== importance || lastSavedTitle !== title) && !disable ? "hidden" : ""}`}>{disable ? <AiOutlineSync /> : <BsCloudCheck />}</div>
             <div className="text-slate-400 opacity-75 text-xs m-auto ml-2">{note !== lastSavedNote || title !== lastSavedTitle || importance.length !== lastSavedImportance.length ? disable ? "Saving..." : "Unsaved Changes" : ""}</div>
             <div className={`flex text-white flex-1 justify-end`}>
-              <select disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-black focus:outline-none">
-                <option selected={importance.includes("Important")} value={"High Importance"}>Importance: High</option>
-                <option selected={importance.includes("Important") === false} value={"Low Importance"}>Importance: Low</option>
+              <select disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-inherit focus:outline-none">
+                <option className="text-black" selected={importance.includes("Important")} value={"High Importance"}>Importance: High</option>
+                <option className="text-black" selected={importance.includes("Important") === false} value={"Low Importance"}>Importance: Low</option>
               </select>
-              <select disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-black focus:outline-none">
-                <option selected={importance.includes("Urgent")} value={"High Urgency"}>Urgency: High</option>
-                <option selected={importance.includes("Urgent") === false} value={"Low Urgency"}>Urgency: Low</option>
+              <select disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-inherit focus:outline-none">
+                <option className="text-black" selected={importance.includes("Urgent")} value={"High Urgency"}>Urgency: High</option>
+                <option className="text-black" selected={importance.includes("Urgent") === false} value={"Low Urgency"}>Urgency: Low</option>
               </select>
               <button className="text-slate-400 mr-2 font-bold uppercase text-sm" onClick={() => setPreview(!preview)}>{preview ? "Editor" : "Preview"}</button>
               <button onClick={copyNote} disabled={note.length === 0 || preview} className={`${preview ? "hidden" : ""} text-slate-400 mr-2 text-sm my-auto disabled:opacity-60 font-bold uppercase`}>Copy</button>

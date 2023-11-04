@@ -22,6 +22,7 @@ mark {
   padding-right: 3px;
   margin-right: 3px;
 }
+
 body {
-  background: black
+  background: radial-gradient(#3730a3, #000000);
 }
