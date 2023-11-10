@@ -1,6 +1,6 @@
 import NoteSection from "@/components/noteSection";
 import Toolbar from "@/components/toolbar";
-import { useSession } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 
 export default function Home() {
@@ -136,7 +136,7 @@ export default function Home() {
           </div>
           <div className="center space-y-2 text-gold flex-1 md:text-4xl sm:text-lg border-none m-auto">
             <center>
-              <button className="w-2/3 border-solid border-2 border-gold rounded-xl text-base p-2 pb-3 hover:bg-black hover:text-gold bg-inherit text-slate-400">
+              <button onClick={() => signIn("google")} className="w-2/3 border-solid border-2 border-gold rounded-xl text-base p-2 pb-3 hover:bg-black hover:text-gold bg-inherit text-slate-400">
                 Sign In With Google
               </button>
             </center>
