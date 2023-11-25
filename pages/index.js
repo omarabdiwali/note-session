@@ -116,40 +116,42 @@ export default function Home() {
       </div>
     )
   }
-  // log in button when user is not logged in
+  // home page when user is not logged in
   if (status === "unauthenticated") {
     return (
-      <div className="min-h-screen mb-3">
+      <div className="min-h-screen flex flex-col">
         <Toolbar signedIn={false} />
-        <div className="mt-24">
-          <center>
-            <div className="text-5xl mb-8 font-bold text-gold">Effortless Note-Taking with NoteSession</div>
-            <div className="text-xl text-gold">Create, organize, and access your notes anytime, anywhere.</div>
-          </center>
-        </div>
-        <div className="grid grid-cols-2 gap-8 mx-5 mt-16">
-          <div className="border border-2 border-gold rounded-xl p-3 min-h-[8rem]">
+        <div className="flex-1">
+          <div className="mt-24">
             <center>
-              <div className="text-gold text-2xl font-bold">Markdown Syntax</div>
-              <div className="text-gold text-md mt-4">Take notes using Markdown syntax for easy formatting and organization.</div>
+              <div className="text-5xl mb-8 font-bold text-gold">Effortless Note-Taking with NoteSession</div>
+              <div className="text-xl text-gold">Create, organize, and access your notes anytime, anywhere.</div>
             </center>
           </div>
-          <div className="border border-2 border-gold rounded-xl p-3 min-h-[8rem]">
+          <div className="grid grid-cols-2 gap-8 mx-5 mt-16">
+            <div className="border border-2 border-gold rounded-xl p-3 min-h-[8rem]">
+              <center>
+                <div className="text-gold text-2xl font-bold">Markdown Syntax</div>
+                <div className="text-gold text-md mt-4">Take notes using Markdown syntax for easy formatting and organization.</div>
+              </center>
+            </div>
+            <div className="border border-2 border-gold rounded-xl p-3 min-h-[8rem]">
+              <center>
+                <div className="text-gold text-2xl font-bold">Cross-Device Sync</div>
+                <div className="text-gold text-lg mt-4">Access your notes on any device and sync your data seamlessly.</div>
+              </center>
+            </div>
+          </div>
+          <div className="mt-20">
             <center>
-              <div className="text-gold text-2xl font-bold">Cross-Device Sync</div>
-              <div className="text-gold text-lg mt-4">Access your notes on any device and sync your data seamlessly.</div>
+              <div className="text-5xl mb-8 font-bold text-gold">Start Taking Notes with NoteSession Today!</div>
+              <button onClick={() => signIn("google")} className="w-1/3 border-solid border-2 border-gold rounded-xl text-base p-2 pb-3 hover:bg-black hover:text-gold bg-inherit text-slate-400">
+                Sign In With Google
+              </button>
             </center>
           </div>
         </div>
-        <div className="mt-20">
-          <center>
-            <div className="text-5xl mb-8 font-bold text-gold">Start Taking Notes with NoteSession Today!</div>
-            <button onClick={() => signIn("google")} className="w-1/3 border-solid border-2 border-gold rounded-xl text-base p-2 pb-3 hover:bg-black hover:text-gold bg-inherit text-slate-400">
-              Sign In With Google
-            </button>
-          </center>
-        </div>
-        <div className="mt-12 mb-0 text-gold text-lg">
+        <div className="mt-12 text-gold text-lg mb-2">
           <center>
             &copy; 2023 NoteSession. All rights reserved.
           </center>
