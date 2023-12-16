@@ -53,8 +53,8 @@ export default function NoteTab({ note, remove, update }) {
 
   return (
     <div className="flex min-w-fit text-sm text-white bg-zinc-800 mx-5 rounded-xl mb-3 my-auto border border-b border-slate-600 h-9 max-h-9">
-      <DeleteNote disableButton={disabled} className={"ml-3 mr-2 m-auto text-lg"} func={() => remove(note)} button={<AiOutlineDelete />} noteId={note.id} />
-      <button title={!change ? "Edit title" : "Save Title"} disabled={disabled} onClick={changeType} className="mr-5 my-auto text-lg">{!change ? <AiOutlineEdit /> : <AiOutlineCheck />}</button>
+      <DeleteNote disableButton={disabled} className={"ml-3 mr-2 m-auto text-lg hover:text-gray-400"} func={() => remove(note)} button={<AiOutlineDelete />} noteId={note.id} />
+      <button title={!change ? "Edit title" : "Save Title"} disabled={disabled} onClick={changeType} className="mr-5 my-auto text-lg hover:text-gray-400">{!change ? <AiOutlineEdit /> : <AiOutlineCheck />}</button>
       <div className="pr-4 whitespace-nowrap my-auto flex-1">
         {!change ? <a href={`/notes/${note.id}`}>{title}</a> :
           <form onSubmit={saveTitle}>
@@ -62,7 +62,7 @@ export default function NoteTab({ note, remove, update }) {
           </form>
         }
       </div>
-      <ChangeSection func={update} className={"text-xl my-auto mr-3 ml-2"} button={<AiOutlineEllipsis />} noteId={note.id} important={note.importance} />
+      <ChangeSection func={update} className={"text-xl my-auto mr-3 ml-2 hover:text-gray-400"} button={<AiOutlineEllipsis />} noteId={note.id} important={note.importance} />
     </div>
   )
 }
