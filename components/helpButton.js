@@ -19,24 +19,24 @@ export default function HelpButton() {
             className="justify-center overscroll-contain items-center flex overflow-x-hidden scrollbar-none fixed inset-0 z-50 outline-none focus:outline-none"
           >
             <div className="relative w-auto my-6 mx-auto w-[50rem] pt-8 max-h-screen max-w-[50rem]">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-[#3538A3] outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-400 text-black outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-black rounded-t">
-                  <h3 className="text-xl text-black font-bold">
+                  <h3 className="text-xl opacity-70 font-bold">
                     Help
                   </h3>
-                  <button className="my-auto text-2xl text-black hover:text-white" onClick={() => setShowModal(false)}>
+                  <button className="my-auto text-2xl hover:text-gray-500" onClick={() => setShowModal(false)}>
                     <AiOutlineClose />
                   </button>
                 </div>
                 <div className="relative max-h-full w-full h-full p-6 flex-auto">
-                  <div>This uses <span><a rel="noopener norefferrer" target="__blank" className="text-blue-400 hover:underline" href="https://www.markdownguide.org/cheat-sheet/">Markdown</a></span> syntax</div>
+                  <div>This uses <span><a rel="noopener norefferrer" target="__blank" className="text-blue-600 hover:underline" href="https://www.markdownguide.org/cheat-sheet/">Markdown</a></span> syntax</div>
                   <div>For code syntax highlighting, add coding language. Ex:</div>
                   <br></br>
                   <div>```js</div>
                   <div className="ml-5">console.log('It works!')</div>
                   <div>```</div>
                   <br></br>
-                  <div>Math: <span><a rel="noopener norefferrer" target="__blank" className="text-blue-400 hover:underline"  href="https://katex.org/docs/support_table.html">Katex</a></span> syntax, surrounded by dollar signs ($[syntax]$)</div>
+                  <div>Math: <span><a rel="noopener norefferrer" target="__blank" className="text-blue-600 hover:underline"  href="https://katex.org/docs/support_table.html">Katex</a></span> syntax, surrounded by dollar signs ($[syntax]$)</div>
                 </div>
               </div>
             </div>

@@ -24,5 +24,6 @@ mark {
 }
 
 body {
-  background: radial-gradient(#3730a3, #000000);
+  /* background: radial-gradient(#3730a3, #000000); */
+  background: black;
 }
