@@ -119,47 +119,53 @@ export default function Home() {
   // home page when user is not logged in
   if (status === "unauthenticated") {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gray-900">  {/* Added background color */}
         <Toolbar signedIn={false} />
-        <div className="flex-1">
-          <div className="mt-24">
-            <center>
-              <div className="text-5xl mb-8 font-bold text-white">Effortless Note-Taking with NoteSession</div>
-              <div className="text-xl text-white opacity-75">Create, organize, and access your notes anytime, anywhere.</div>
-            </center>
-          </div>
-          <div className="grid grid-cols-2 gap-8 mx-5 mt-16">
-            <div className="border border-2 border-white rounded-xl p-3 min-h-[8rem]">
-              <center>
-                <div className="text-white text-2xl font-bold">Markdown Syntax</div>
-                <div className="text-white opacity-75 text-md mt-4">Take notes using Markdown syntax for easy formatting and organization.</div>
-              </center>
+        <div className="flex-1 flex items-center justify-center"> {/* Centered content */}
+          <div className="max-w-4xl w-full px-4">
+            <div className="text-center mt-12">
+              <h1 className="text-5xl mb-8 font-bold text-white">
+                Effortless Note-Taking with NoteSession
+              </h1>
+              <p className="text-xl text-white opacity-75">
+                Create, organize, and access your notes anytime, anywhere.
+              </p>
             </div>
-            <div className="border border-2 border-white rounded-xl p-3 min-h-[8rem]">
-              <center>
-                <div className="text-white text-2xl font-bold">Cross-Device Sync</div>
-                <div className="text-white opacity-75 text-lg mt-4">Access your notes on any device and sync your data seamlessly.</div>
-              </center>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"> {/* Responsive grid */}
+              <div className="border border-2 border-gray-700 rounded-xl p-6 text-center transition-colors hover:border-gray-500"> {/* Added padding, hover effect, and transition */}
+                <h2 className="text-2xl font-bold text-white">Markdown Syntax</h2>
+                <p className="text-gray-300 text-base mt-4">
+                  Take notes using Markdown syntax for easy formatting and organization.
+                </p>
+              </div>
+              <div className="border border-2 border-gray-700 rounded-xl p-6 text-center transition-colors hover:border-gray-500"> {/* Added padding, hover effect, and transition */}
+                <h2 className="text-2xl font-bold text-white">Cross-Device Sync</h2>
+                <p className="text-gray-300 text-base mt-4">
+                  Access your notes on any device and sync your data seamlessly.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="mt-20">
-            <center>
-              <div className="text-5xl mb-8 font-bold text-white">Start Taking Notes with NoteSession Today!</div>
-              <button onClick={() => signIn("google")} className="w-1/3 border-solid border-2 border-white rounded-xl text-base p-2 pb-3 hover:text-black hover:bg-white bg-inherit text-slate-400">
+            <div className="mt-20 text-center">
+              <h2 className="text-5xl mb-8 font-bold text-white">
+                Start Taking Notes with NoteSession Today!
+              </h2>
+              <button
+                onClick={() => signIn("google")}
+                className="px-6 py-3 rounded-xl text-base font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-colors duration-200 ease-in-out" // Improved button styling
+              >
                 Sign In With Google
               </button>
-            </center>
+            </div>
           </div>
         </div>
-        <div className="mt-12 text-white opacity-60 text-lg mb-2">
-          <center>
-            &copy; 2023 NoteSession. All rights reserved.
-          </center>
-        </div>
+        <footer className="py-4">
+            <p className="text-center text-gray-400 text-sm">
+              &copy; {new Date().getFullYear()} NoteSession. All rights reserved.
+            </p>
+        </footer>
       </div>
-    )
+    );
   }
-
 
   return (
     <>
