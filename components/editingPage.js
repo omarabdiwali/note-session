@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import { enqueueSnackbar } from "notistack";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
-import { AiOutlineDelete, AiOutlineSave, AiOutlineSync } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineHome, AiOutlineSave, AiOutlineSync } from "react-icons/ai";
 import { BsCloudCheck } from "react-icons/bs";
 import DeleteNote from "./deleteButton";
 import Head from "next/head";
@@ -275,6 +275,7 @@ export default function EditingPage() {
       {loaded ? (
         <div className={`mb-0`}>
           <div ref={header} className={`flex scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-slate-700 scrollbar-track-inherit p-2 overflow-x-auto ${preview ? "mb-2" : ""}`}>
+            <button onClick={() => window.location.href = "/"} className={`text-2xl mx-2 text-white`}><AiOutlineHome /></button>
             <form onSubmit={saveNote}>
               <input disabled={preview} className="bg-inherit text-slate-400 mx-2 p-2 max-w-[20rem]" placeholder="Untitled Note" value={title} onChange={(e) => setTitle(e.target.value)}></input>
             </form>
