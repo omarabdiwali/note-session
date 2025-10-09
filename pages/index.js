@@ -1,7 +1,7 @@
 import NoteSection from "@/components/noteSection";
 import Toolbar from "@/components/toolbar";
-import { signIn, useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
+import { signIn, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { data: _, status } = useSession();
@@ -9,7 +9,6 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [notes, setNotes] = useState([]);
   const [both, setBoth] = useState([]);
-  
   const [important, setImportant] = useState([]);
   const [urgent, setUrgent] = useState([]);
   const [none, setNone] = useState([]);
@@ -116,52 +115,36 @@ export default function Home() {
       </div>
     )
   }
-  // home page when user is not logged in
+
+  // Home page when user is not logged in
   if (status === "unauthenticated") {
     return (
-      <div className="min-h-screen flex flex-col bg-gray-900">  {/* Added background color */}
+      <div className="h-screen bg-black">
         <Toolbar signedIn={false} />
-        <div className="flex-1 flex items-center justify-center"> {/* Centered content */}
-          <div className="max-w-4xl w-full px-4">
-            <div className="text-center mt-12">
-              <h1 className="text-5xl mb-8 font-bold text-white">
-                Effortless Note-Taking with NoteSession
-              </h1>
-              <p className="text-xl text-white opacity-75">
-                Create, organize, and access your notes anytime, anywhere.
-              </p>
+        <section className="h-full w-full flex flex-col justify-center items-center">
+          <div className="max-w-4xl mx-auto p-8 text-center">
+            <h1 className="text-5xl font-bold text-gray-300 mb-4">Welcome to NoteSession</h1>
+            <p className="text-lg text-gray-600 mb-8">Effortless note-taking, organized and accessible anywhere.</p>
+            <button
+              onClick={() => signIn("google")}
+              className="px-8 py-4 rounded-xl text-lg font-bold bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 transition-colors duration-200 ease-in-out text-white"
+            >
+              Get Started
+            </button>
+          </div>
+          <div className="max-w-6xl mx-auto p-8 mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gray-600 rounded-xl p-8 shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Organize Your Notes</h2>
+              <p className="text-lg text-gray-300">NoteSession helps you categorize your notes into importance and urgency levels, making it easy to prioritize tasks.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"> {/* Responsive grid */}
-              <div className="border border-2 border-gray-700 rounded-xl p-6 text-center transition-colors hover:border-gray-500"> {/* Added padding, hover effect, and transition */}
-                <h2 className="text-2xl font-bold text-white">Markdown Syntax</h2>
-                <p className="text-gray-300 text-base mt-4">
-                  Take notes using Markdown syntax for easy formatting and organization.
-                </p>
-              </div>
-              <div className="border border-2 border-gray-700 rounded-xl p-6 text-center transition-colors hover:border-gray-500"> {/* Added padding, hover effect, and transition */}
-                <h2 className="text-2xl font-bold text-white">Cross-Device Sync</h2>
-                <p className="text-gray-300 text-base mt-4">
-                  Access your notes on any device and sync your data seamlessly.
-                </p>
-              </div>
-            </div>
-            <div className="mt-20 text-center">
-              <h2 className="text-5xl mb-8 font-bold text-white">
-                Start Taking Notes with NoteSession Today!
-              </h2>
-              <button
-                onClick={() => signIn("google")}
-                className="px-6 py-3 rounded-xl text-base font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-colors duration-200 ease-in-out" // Improved button styling
-              >
-                Sign In With Google
-              </button>
+            <div className="bg-gray-600 rounded-xl p-8 shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Anywhere</h2>
+              <p className="text-lg text-gray-300">With NoteSession, you can access your notes from any device, at any time, ensuring you're always on top of your tasks.</p>
             </div>
           </div>
-        </div>
-        <footer className="py-4">
-            <p className="text-center text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} NoteSession. All rights reserved.
-            </p>
+        </section>
+        <footer className="w-full py-4 text-center text-gray-600 border-t border-gray-200">
+          &copy; {new Date().getFullYear()} NoteSession. All rights reserved.
         </footer>
       </div>
     );
