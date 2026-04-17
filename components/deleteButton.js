@@ -40,7 +40,7 @@ export default function DeleteNote({ func, className, button, noteId, onPage=fal
       <div className={`cursor-auto ${!open ? "hidden" : ""} z-50`}>
         <div className={`fixed flex h-screen inset-0 z-50 transition-all duration-300 delay-150 ease-in-out ${!open ? "opacity-0 hidden" : "opacity-100"} w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-96 max-h-full`}>
           <div className="relative m-auto w-full max-w-lg max-h-full">
-            <div className="relative rounded-lg shadow bg-gray-400 text-black">
+            <div className="relative rounded-lg shadow bg-slate-900 text-white">
               <div className="text-2xl font-bold p-3 m-3">Delete Note</div>
               <div className="text-lg opacity-80 mx-5">
                 Are you sure? You can&apos;t undo this action afterwards.

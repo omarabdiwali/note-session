@@ -9,4 +9,5 @@ let NoteScehma = new Schema({
   date: Date
 })
 
-module.exports = mongoose.models.Notes || mongoose.model("Notes", NoteScehma);
+const Notes = mongoose.models.Notes || mongoose.model("Notes", NoteScehma);
+export default Notes;

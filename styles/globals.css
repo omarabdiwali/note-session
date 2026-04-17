@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .markdown a {
-  color: #1a68f9;
+  color: #4583f6;
   text-decoration: none;
 }
 .markdown code {
@@ -24,6 +24,5 @@ mark {
 }
 
 body {
-  /* background: radial-gradient(#3730a3, #000000); */
-  background: black;
+  background-color: oklch(12.9% 0.042 264.695);
 }

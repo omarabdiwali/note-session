@@ -119,12 +119,10 @@ export default function EditingPage() {
   // shows a loading aninmation when page is not finished
   if (status !== "unauthenticated" && !loaded) {
     return (
-      <div className="flex h-screen">
-        <div className="m-auto">
-          <svg className="animate-spin h-10 w-10 mr-3 text-white" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 rounded-full border-t-2 border-cyan-400 animate-spin"></div>
+          <div className="absolute inset-2 rounded-full border-r-2 border-blue-500 animate-spin animation-delay-150"></div>
         </div>
       </div>
     )
@@ -231,7 +229,9 @@ export default function EditingPage() {
         e.target.selectionEnd = selectionEnd - 4;
       }
     }
-    // allows the user to save using ctrl+s
+  }
+
+  const saveShortcut = (e) => {
     if (e.key === "s" && e.ctrlKey) {
       e.preventDefault();
       saveNote(e);
@@ -273,27 +273,27 @@ export default function EditingPage() {
         <title>{lastSavedTitle.length === 0 ? "Untitled Note - NoteSession" : `${lastSavedTitle} - NoteSession`}</title>
       </Head>
       {loaded ? (
-        <div className={`mb-0`}>
+        <div className={`mb-0`} onKeyDown={saveShortcut}>
           <div ref={header} className={`flex scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-slate-700 scrollbar-track-inherit p-2 overflow-x-auto ${preview ? "mb-2" : ""}`}>
-            <button onClick={() => window.location.href = "/"} className={`text-2xl mx-2 text-white`}><AiOutlineHome /></button>
+            <button onClick={() => window.location.href = "/"} className={`text-2xl mx-2 hover:text-cyan-400 text-white`}><AiOutlineHome /></button>
             <form onSubmit={saveNote}>
               <input disabled={preview} className="bg-inherit text-slate-400 mx-2 p-2 max-w-[20rem]" placeholder="Untitled Note" value={title} onChange={(e) => setTitle(e.target.value)}></input>
             </form>
             <div className={`my-auto pl-4 text-xl text-slate-400 opacity-75 ${(lastSavedNote !== note || lastSavedImportance !== importance || lastSavedTitle !== title) && !disable ? "hidden" : ""}`}>{disable ? <AiOutlineSync /> : <BsCloudCheck />}</div>
             <div className="text-slate-400 opacity-75 text-xs m-auto ml-2">{note !== lastSavedNote || title !== lastSavedTitle || importance.length !== lastSavedImportance.length ? disable ? "Saving..." : "Unsaved Changes" : ""}</div>
             <div className={`flex text-white flex-1 justify-end`}>
-              <select disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-inherit focus:outline-none">
-                <option className="text-black" selected={importance.includes("Important")} value={"High Importance"}>Importance: High</option>
-                <option className="text-black" selected={importance.includes("Important") === false} value={"Low Importance"}>Importance: Low</option>
+              <select value={importance.includes("Important") ? "High Importance" : "Low Importance"} disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-inherit focus:outline-none">
+                <option className="text-black" value={"High Importance"}>Importance: High</option>
+                <option className="text-black" value={"Low Importance"}>Importance: Low</option>
               </select>
-              <select disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-inherit focus:outline-none">
-                <option className="text-black" selected={importance.includes("Urgent")} value={"High Urgency"}>Urgency: High</option>
-                <option className="text-black" selected={importance.includes("Urgent") === false} value={"Low Urgency"}>Urgency: Low</option>
+              <select value={importance.includes("Urgent") ? "High Urgency" : "Low Urgency"} disabled={preview} onChange={handleImp} className="mr-4 text-white text-sm bg-inherit focus:outline-none">
+                <option className="text-black" value={"High Urgency"}>Urgency: High</option>
+                <option className="text-black" value={"Low Urgency"}>Urgency: Low</option>
               </select>
-              <button className="text-slate-400 mr-2 font-bold uppercase text-sm" onClick={() => setPreview(!preview)}>{preview ? "Editor" : "Preview"}</button>
-              <button onClick={copyNote} disabled={note.length === 0 || preview} className={`${preview ? "hidden" : ""} text-slate-400 mr-2 text-sm my-auto disabled:opacity-60 font-bold uppercase`}>Copy</button>
-              <DeleteNote func={() => window.location.reload()} button={<AiOutlineDelete />} className={`disabled:opacity-60 mr-2 text-2xl`} noteId={noteId} onPage={true} />
-              <button onClick={saveNote} className={`disabled:opacity-60 text-2xl mr-2`} disabled={(note === lastSavedNote && importance.length === lastSavedImportance.length && title === lastSavedTitle) || disable}><AiOutlineSave /></button>
+              <button className="text-slate-400 mr-2 font-bold uppercase text-sm hover:text-cyan-400" onClick={() => setPreview(!preview)}>{preview ? "Editor" : "Preview"}</button>
+              <button onClick={copyNote} disabled={note.length === 0 || preview} className={`${preview ? "hidden" : ""} text-slate-400 enabled:hover:text-cyan-400 mr-2 text-sm my-auto disabled:opacity-60 font-bold uppercase`}>Copy</button>
+              <DeleteNote func={() => window.location.reload()} button={<AiOutlineDelete />} className={`disabled:opacity-60 enabled:hover:text-red-600 mr-2 text-2xl`} noteId={noteId} onPage={true} />
+              <button onClick={saveNote} className={`disabled:opacity-60 text-2xl mr-2 enabled:hover:text-cyan-400`} disabled={(note === lastSavedNote && importance.length === lastSavedImportance.length && title === lastSavedTitle) || disable}><AiOutlineSave /></button>
               <HelpButton />
             </div>
           </div>

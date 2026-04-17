@@ -37,7 +37,7 @@ export default function ChangeSection({ func, className, button, noteId, importa
 
   const changeImportance = (e) => {
     e.preventDefault();
-    let cpyImp = importance;
+    let cpyImp = importance.slice();
 
     // Checks if the select tag is regarding the importance or urgency, and adds or removes it
     if (e.target.value.includes("Importance")) {
@@ -65,24 +65,24 @@ export default function ChangeSection({ func, className, button, noteId, importa
       <div className={`cursor-auto ${!open ? "hidden" : ""} z-50`}>
         <div className={`fixed flex h-screen inset-0 z-50 transition-all duration-300 delay-150 ease-in-out ${!open ? "opacity-0 hidden" : "opacity-100"} w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-96 max-h-full`}>
           <div className="relative m-auto w-full max-w-lg max-h-full">
-            <div className="relative rounded-lg shadow bg-gray-400 text-black opacity">
+            <div className="relative rounded-lg shadow bg-slate-900 text-white opacity">
               <div className="text-2xl font-bold p-3 m-3">Change Section</div>
               <div className="text-lg mx-5">
                 <div className="border-b border-black m-3 text-left">
-                  <select onChange={changeImportance} className="mr-4 w-full bg-inherit focus:outline-none">
-                    <option selected={importance.includes("Important")} value={"High Importance"}>Importance: High</option>
-                    <option selected={importance.includes("Important") === false} value={"Low Importance"}>Importance: Low</option>
+                  <select value={importance.includes("Important") ? "High Importance" : "Low Importance"} onChange={changeImportance} className="mr-4 w-full bg-inherit focus:outline-none">
+                    <option className="text-black" value={"High Importance"}>Importance: High</option>
+                    <option className="text-black" value={"Low Importance"}>Importance: Low</option>
                   </select>
                 </div>
                 <div className="border-b border-black m-3 text-left">
-                  <select onChange={changeImportance} className="mr-4 w-full bg-inherit focus:outline-none">
-                    <option selected={importance.includes("Urgent")} value={"High Urgency"}>Urgency: High</option>
-                    <option selected={importance.includes("Urgent") === false} value={"Low Urgency"}>Urgency: Low</option>
+                  <select value={importance.includes("Urgent") ? "High Urgency" : "Low Urgency"} onChange={changeImportance} className="mr-4 w-full bg-inherit focus:outline-none">
+                    <option className="text-black" value={"High Urgency"}>Urgency: High</option>
+                    <option className="text-black" value={"Low Urgency"}>Urgency: Low</option>
                   </select>
                 </div>
               </div>
               <div className="flex justify-end p-6 space-x-2 rounded-b border-gray-600">
-                <button disabled={disabled || important.length === importance.length} className="disabled:opacity-60 text-black focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-green-600 disabled:bg-green-700 enabled:hover:bg-green-700 focus:ring-green-800" onClick={updateItem}>Save</button>
+                <button disabled={disabled || important.length === importance.length} className="disabled:opacity-60 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-green-600 disabled:bg-green-700 enabled:hover:bg-green-700 focus:ring-green-800" onClick={updateItem}>Save</button>
                 <button disabled={disabled} className="disabled:opacity-75 focus:ring-4 focus:outline-none rounded-lg border text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 bg-gray-800 text-gray-300 border-gray-500 hover:text-white hover:bg-black focus:ring-gray-600" onClick={closeModal}>Cancel</button>
               </div>
             </div>

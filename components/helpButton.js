@@ -7,7 +7,7 @@ export default function HelpButton() {
   return (
     <>
       <button
-        className="text-white font-bold uppercase text-2xl rounded shadow hover:shadow-lg outline-none focus:outline-none my-auto ease-linear transition-all duration-150"
+        className="text-white hover:text-cyan-400 font-bold uppercase text-2xl rounded shadow hover:shadow-lg outline-none focus:outline-none my-auto ease-linear transition-all duration-150"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -19,7 +19,7 @@ export default function HelpButton() {
             className="justify-center overscroll-contain items-center flex overflow-x-hidden scrollbar-none fixed inset-0 z-50 outline-none focus:outline-none"
           >
             <div className="relative w-auto my-6 mx-auto w-[50rem] pt-8 max-h-screen max-w-[50rem]">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-400 text-black outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-slate-900 text-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-black rounded-t">
                   <h3 className="text-xl opacity-70 font-bold">
                     Help
