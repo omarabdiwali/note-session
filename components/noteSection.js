@@ -3,7 +3,7 @@ import NoteTab from "./noteTab"
 
 export default function NoteSection({ notes, title, remove, update, className = "" }) {
   return (
-    <div className={`flex flex-col rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-sm overflow-hidden h-[350px] lg:h-auto ${className}`}>
+    <div className={`flex flex-col rounded-3xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-sm overflow-hidden min-h-[300px] h-[37vh] max-h-[37vh] lg:h-auto ${className}`}>
       
       {/* Header Area */}
       <div className="flex items-center justify-between px-6 py-5 border-b border-white/[0.05] bg-white/[0.01]">
